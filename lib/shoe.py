@@ -1,18 +1,9 @@
 class Shoe:
-    def __init__(self, brand, size, price):
-        self._brand = brand
-        self._size = size
-        self._price = price
-
-    @property
-    def brand(self):
-        return self._brand
-
-    @brand.setter
-    def brand(self, value):
-        if not value:
-            raise ValueError("Brand cannot be empty.")
-        self._brand = value
+    def __init__(self, brand, size):
+        self.brand = brand
+        self._size = None
+        self.size = size  # Use the property setter
+        self.condition = "Used"  # Default condition
 
     @property
     def size(self):
@@ -20,22 +11,11 @@ class Shoe:
 
     @size.setter
     def size(self, value):
-        if value <= 0:
-            raise ValueError("Size must be positive.")
-        self._size = value
+        if not isinstance(value, int):
+            print("size must be an integer")
+        else:
+            self._size = value
 
-    @property
-    def price(self):
-        return self._price
-
-    @price.setter
-    def price(self, value):
-        if value < 0:
-            raise ValueError("Price cannot be negative.")
-        self._price = value
-
-    def __str__(self):
-        return f"{self.brand} - Size {self.size}, ${self.price:.2f}"
-
-    def __repr__(self):
-        return f"Shoe(brand={self.brand!r}, size={self.size}, price={self.price:.2f})"
+    def cobble(self):
+        self.condition = "New"
+        print("Your shoe is as good as new!")
